@@ -1,19 +1,18 @@
 class Solution:
-    def maximumUnits(self, boxTypes: List[List[int]], truckSize: int) -> int:
+    def maximumUnits(self, boxTypes: list[list[int]], truckSize: int) -> int:
+        units_per_box = {}
+        for [x,y] in boxTypes:
+            units_per_box[y] = units_per_box.get(y, 0) + x
+        max_upb = list(units_per_box.keys())
+        max_upb.sort(reverse=True)
         count_units = 0
-        while truckSize != 0:
-            max_unit_per_box = [0,0]
-            for no_of_boxes, unit_per_box in boxTypes:
-                if unit_per_box > max_unit_per_box[1]:
-                    max_unit_per_box = [no_of_boxes, unit_per_box]
-            if boxTypes == []:
-                break
-            elif max_unit_per_box[0] <= truckSize:
-                truckSize -= max_unit_per_box[0]
-                count_units += max_unit_per_box[0]*max_unit_per_box[1]
+        for upb in max_upb:
+            if truckSize > units_per_box[upb]:
+                count_units += upb*units_per_box[upb]
+                truckSize -= units_per_box[upb]
             else:
-                count_units += truckSize*max_unit_per_box[1]
+                count_units += upb * truckSize
                 truckSize = 0
-            boxTypes.remove(max_unit_per_box)
-                
+                break
+      
         return count_units
