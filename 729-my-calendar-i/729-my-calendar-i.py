@@ -7,9 +7,7 @@ class MyCalendar:
     def book(self, start: int, end: int) -> bool:
         flag = False
         start_after = None
-        endtime = list(self.table.keys())
-        endtime.sort()
-        for key in endtime:
+        for key in sorted(self.table.keys()):
             if key <= start:
                 start_after = key
             else:
