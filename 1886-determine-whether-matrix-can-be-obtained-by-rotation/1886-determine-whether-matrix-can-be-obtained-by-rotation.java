@@ -3,13 +3,6 @@ class Solution {
         for(int i = 1; i<=4; i++) {
             if(Arrays.deepEquals(mat, target))
                 return true;
-            for(int[] row: mat) {
-            for(int elem: row) {
-                System.out.print(elem+" ");
-            }
-            System.out.println();
-        }
-        System.out.println();
             mat = rotate(mat);
         }
         return false;
