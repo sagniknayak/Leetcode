@@ -12,7 +12,6 @@ class Solution:
             return -1
         else:
             options = list(filter(lambda gene: score(start, gene) == 1, bank))
-            print(f'options: {options}')
             if options == []:
                 return -1
             distance = list(map(lambda gene: score(end, gene), options))
@@ -21,13 +20,11 @@ class Solution:
             for i in range(len(distance)):
                 if distance[i] == mindist:
                     choices.append(options[i])
-            print(f'choices: {choices}')
             ult_scores = list()
             for choice in choices:
                 new_bank = bank.copy()
                 new_bank.remove(choice)
                 ult_scores.append(self.minMutation(choice, end, new_bank))
-            print(ult_scores)
             min_score = min(ult_scores)
             if min_score == -1:
                 return min_score
