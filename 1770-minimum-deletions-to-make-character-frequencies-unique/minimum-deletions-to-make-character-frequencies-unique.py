@@ -3,7 +3,6 @@ class Solution:
         freq = dict()
         for ch in s:
             freq[ch] = freq.get(ch,0) + 1
-        print(freq)
         freq_unique = list()
         val = 0
         for key,value in freq.items():
