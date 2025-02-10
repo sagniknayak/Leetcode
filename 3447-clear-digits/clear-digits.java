@@ -8,8 +8,6 @@ class Solution {
                 str.deleteCharAt(str.length()-1);
             else
                 str.append(""+c);
-            System.out.println(ctr);
-            System.out.println(str);
         }
         return str.toString();
     }
