@@ -9,11 +9,12 @@ class Solution:
             if palin[i-1] == palin[i-2]:
                 break
             if palin[i-2] == []:
-                palin[i] = []
                 continue
+            new_palin = list()
             for base in list(filter(lambda x: x[0][0]-1>=0 and x[0][1]+1<leng,palin[i-2])):
                 if s[base[0][0]-1] == s[base[0][1]+1]:
-                    palin[i] = palin[i]+[((base[0][0]-1,base[0][1]+1),s[base[0][0]-1]+base[1]+s[base[0][1]+1])]
+                    new_palin.append(((base[0][0]-1,base[0][1]+1),s[base[0][0]-1]+base[1]+s[base[0][1]+1]))
+            palin[i] = new_palin
         for i in range(max(palin.keys()),0,-1):
             if palin.get(i,[]) == []:
                 continue
