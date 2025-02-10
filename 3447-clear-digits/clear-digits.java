@@ -1,16 +1,16 @@
 class Solution {
     public String clearDigits(String s) {
-        String str = "";
+        StringBuffer str = new StringBuffer("");
         int ctr = 0;
         for(int i = 0; i<s.length(); i++) {
             char c = s.charAt(i);
-            if(Character.isDigit(c))
-                str = str.substring(0,str.length()-1);
+            if('0'<= c && c<='9')
+                str.deleteCharAt(str.length()-1);
             else
-                str += c;
+                str.append(""+c);
             System.out.println(ctr);
             System.out.println(str);
         }
-        return str;
+        return str.toString();
     }
 }
