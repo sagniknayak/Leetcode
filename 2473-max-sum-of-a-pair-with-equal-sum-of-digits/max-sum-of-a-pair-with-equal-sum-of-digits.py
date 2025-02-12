@@ -8,16 +8,13 @@ class Solution:
                 digsum+=dupnum%10
                 dupnum//=10
             sums[digsum] = sums.get(digsum,[])+[num]
-        print(sums)
         clean_sums = {k:v for k,v in sums.items() if len(v)>=2}
-        print(clean_sums)
         if clean_sums:
             maxsum = 0
             for nums in clean_sums.values():
                 nums.sort()
                 if maxsum < nums[-1]+nums[-2]:
                     maxsum = nums[-1]+nums[-2]
-                print(maxsum)
             return maxsum
         else:
             return -1
