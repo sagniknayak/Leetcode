@@ -6,11 +6,10 @@ class Solution {
         long val = 0;
         while(x>0){
             dig = x%10;
-            val = ((long)reverse)*10 + dig;
-            if(val > Integer.MAX_VALUE){
+            if(reverse > (Integer.MAX_VALUE-dig)/10){
                return 0;
             }
-            reverse = (int)val;   
+            reverse = reverse*10 + dig;   
             x/=10;
         }
         return reverse*((dup<0)?-1:1);
