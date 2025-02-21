@@ -36,7 +36,6 @@ class FindElements:
             else:
                 det_path = "L"+det_path
                 dup = (dup-1)//2
-        print(det_path)
         found = True
         current = self.root
         for move in det_path:
