@@ -7,6 +7,7 @@
 class FindElements:
 
     def __init__(self, root: Optional[TreeNode]):
+        self.is_there = dict()
         leaves = {root}
         flag = True
         ctr = 0
@@ -16,6 +17,7 @@ class FindElements:
             for leaf in leaves:
                 if leaf is not None:
                     leaf.val = ctr
+                    self.is_there[ctr] = True
                     new_leaves.append(leaf.left)
                     new_leaves.append(leaf.right)
                     flag = True
@@ -26,28 +28,8 @@ class FindElements:
             leaves = new_leaves
             self.root = root
 
-    def route(self, num):
-        if num == 0:
-            return ""
-        elif num%2 == 0:
-            return self.route((num-2)//2) + "R"
-        else:
-            return self.route((num-1)//2) + "L"
-
     def find(self, target: int) -> bool:
-        det_path = self.route(target)
-        found = True
-        current = self.root
-        for move in det_path:
-            if move == 'L':
-                current = current.left
-            else:
-                current = current.right
-            if current is None:
-                found = False
-                break
-
-        return found
+        return self.is_there.get(target, False)
 
 
 # Your FindElements object will be instantiated and called as such:
