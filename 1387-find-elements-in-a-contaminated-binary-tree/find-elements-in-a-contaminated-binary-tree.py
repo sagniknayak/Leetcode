@@ -8,25 +8,18 @@ class FindElements:
 
     def __init__(self, root: Optional[TreeNode]):
         self.is_there = dict()
-        leaves = {root}
-        flag = True
-        ctr = 0
-        while(flag):
-            flag = False
-            new_leaves = list()
-            for leaf in leaves:
-                if leaf is not None:
-                    leaf.val = ctr
-                    self.is_there[ctr] = True
-                    new_leaves.append(leaf.left)
-                    new_leaves.append(leaf.right)
-                    flag = True
-                else:
-                    new_leaves.append(None)
-                    new_leaves.append(None)
-                ctr+=1
-            leaves = new_leaves
-            self.root = root
+        self.clean_tree(root, 0)
+
+    def clean_tree(self, root, root_value):
+        if root is None:
+            return None
+        root.value = root_value
+        self.is_there[root_value] = True
+        root.left = self.clean_tree(root.left, root_value*2+1)
+        root.right = self.clean_tree(root.right, root_value*2+2)
+        return root
+
+
 
     def find(self, target: int) -> bool:
         return self.is_there.get(target, False)
