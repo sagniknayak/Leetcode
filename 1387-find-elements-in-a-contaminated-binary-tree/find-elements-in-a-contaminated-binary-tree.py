@@ -26,16 +26,16 @@ class FindElements:
             leaves = new_leaves
             self.root = root
 
+    def route(self, num):
+        if num == 0:
+            return ""
+        elif num%2 == 0:
+            return self.route((num-2)//2) + "R"
+        else:
+            return self.route((num-1)//2) + "L"
+
     def find(self, target: int) -> bool:
-        det_path = ""
-        dup = target
-        while(dup>0):
-            if dup%2 == 0:
-                det_path = "R"+det_path
-                dup = (dup-2)//2
-            else:
-                det_path = "L"+det_path
-                dup = (dup-1)//2
+        det_path = self.route(target)
         found = True
         current = self.root
         for move in det_path:
