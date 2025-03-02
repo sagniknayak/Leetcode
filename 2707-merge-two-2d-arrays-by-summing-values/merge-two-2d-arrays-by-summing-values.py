@@ -22,5 +22,4 @@ class Solution:
                 while ptr1 < len(nums1):
                     res.append([nums1[ptr1][0], nums1[ptr1][1]])
                     ptr1+=1
-        print(res)
         return res
